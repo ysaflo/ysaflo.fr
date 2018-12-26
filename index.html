@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<script>
+  let savedScroll
+
+  function toggleZoom(el) {
+    // If this one is selected, unzoom
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected')
+      el.parentNode.classList.remove('zoom')
+
+      // Restore scroll
+      console.log(window.pageYOffset, savedScroll)
+      window.scrollTo(window.pageXOffset, savedScroll)
+      console.log(window.pageYOffset, savedScroll)
+
+    } else {
+      // Save current scroll
+      savedScroll = window.pageYOffset
+
+      // Deselect others
+      var selected = document.querySelectorAll('.selected')
+      for (var i=0; i < selected.length; ++i) {
+        selected[i].classList.remove('selected')
+      }
+
+      // Select this one
+      el.classList.add('selected')
+
+      // Toggle zoom mode
+      el.parentNode.classList.add('zoom')
+    }
+  }
+</script>
+
+<style>
+  #gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .painting {
+    display: inline-block;
+    height: 200px;
+    margin: 5px;
+  }
+
+  .zoom .painting {
+    height: 0;
+  }
+
+  .painting.selected {
+    height: 80vh;
+    width: 80vw;
+    flex-basis: 100%;
+  }
+
+  .zoom .painting.selected {
+
+  }
+
+  .painting img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    object-fit: contain;
+  }
+</style>
+
+<div id="gallery">
+  {% for painting in site.data.paintings %}
+  <div class="painting" onclick="toggleZoom(this)">
+    <img src="/img/{{ painting.img }}">
+  </div>
+  {% endfor %}
+</div>
