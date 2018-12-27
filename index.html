@@ -3,19 +3,16 @@ layout: default
 ---
 
 <script>
-  let savedScroll
+  var savedScroll
 
   function toggleZoom(el) {
     // If this one is selected, unzoom
     if (el.classList.contains('selected')) {
       el.classList.remove('selected')
-      el.parentNode.classList.remove('zoom')
+      el.closest('body').classList.remove('zoom')
 
       // Restore scroll
-      console.log(window.pageYOffset, savedScroll)
       window.scrollTo(window.pageXOffset, savedScroll)
-      console.log(window.pageYOffset, savedScroll)
-
     } else {
       // Save current scroll
       savedScroll = window.pageYOffset
@@ -30,51 +27,134 @@ layout: default
       el.classList.add('selected')
 
       // Toggle zoom mode
-      el.parentNode.classList.add('zoom')
+      el.closest('body').classList.add('zoom')
     }
+  }
+
+  function traverse(succ) {
+    // Find the selected painting
+    var el = document.querySelector('.selected')
+
+    // Find the sibling.  Be sure to skip text nodes.
+    var sib = succ(el)
+    while (sib != null && sib.nodeType === Node.TEXT_NODE) {
+      sib = succ(sib)
+    }
+
+    if (sib && sib.classList.contains('painting')) {
+      // Exchange
+      el.classList.remove('selected')
+      sib.classList.add('selected')
+    }
+  }
+
+  function left() {
+    traverse(function(el) { return el.previousSibling })
+  }
+
+  function right() {
+    traverse(function(el) { return el.nextSibling })
   }
 </script>
 
 <style>
+  .zoom header {
+    display: none;
+  }
+
+  .zoom main {
+    margin: 0;
+  }
+
   #gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+  }
+
+  .zoom #gallery {
+    flex-wrap: nowrap;
   }
 
   .painting {
     display: inline-block;
     height: 200px;
+
     margin: 5px;
   }
 
   .zoom .painting {
-    height: 0;
+    display: none;
   }
 
   .painting.selected {
-    height: 80vh;
+    height: 95vh;
     width: 80vw;
-    flex-basis: 100%;
+    /* flex-basis: 100%; */
   }
 
   .zoom .painting.selected {
-
+    display: inline-block;
+    margin: 2.5vh 10px;
   }
 
   .painting img {
     display: block;
     height: 100%;
-    width: 100%;
-    margin: auto;
+    max-width: 100%;
     object-fit: contain;
+    margin: auto;
+  }
+
+  .zoom .painting img {
+
+  }
+
+  .painting:hover {
+    outline: 3px solid #fafafa;
+  }
+
+  .zoom .painting:hover {
+    outline: none;
+  }
+
+  #left, #right {
+    position: relative;
+    width: 100px;
+    background: rgba(0,0,0,0.7);
+    color: #333;
+    font-size: 100px;
+    font-weight: 300;
+    cursor: pointer;
+  }
+
+  #left:hover, #right:hover {
+    color: #888;
+    background: rgba(0,0,0,0.5);
+    outline: 1px solid #fafafa;
+  }
+
+  #left, #right {
+    display: none;
+  }
+
+  .zoom #left, .zoom #right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
 
+
+
 <div id="gallery">
+  <div id="left" onclick="left()"><span>&lt;</span></div>
+
   {% for painting in site.data.paintings %}
   <div class="painting" onclick="toggleZoom(this)">
     <img src="/img/{{ painting.img }}">
   </div>
   {% endfor %}
+
+  <div id="right" onclick="right()"><span>&gt;</span></div>
 </div>
