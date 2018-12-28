@@ -3,6 +3,27 @@ layout: default
 ---
 
 <script>
+  document.addEventListener('DOMContentLoaded', init)
+
+  function init() {
+    var gallery = document.getElementById('gallery')
+    gallery.addEventListener('click', function(ev) {
+      var painting = ev.target.closest('.painting')
+      if (painting) {
+        toggleZoom(painting)
+      }
+    })
+
+    document.addEventListener('keydown', function(ev) {
+      if (gallery.closest('.zoom')) {
+        switch (ev.key) {
+        case "ArrowLeft": left(); break
+        case "ArrowRight": right(); break
+        }
+      }
+    })
+  }
+
   var savedScroll
 
   function toggleZoom(el) {
@@ -24,11 +45,17 @@ layout: default
       }
 
       // Select this one
-      el.classList.add('selected')
+      selectPainting(el)
 
       // Toggle zoom mode
       el.closest('body').classList.add('zoom')
     }
+  }
+
+  function selectPainting(painting) {
+    painting.classList.add('selected')
+    var img = painting.querySelector('img')
+    img.src = img.src.replace('/previews/', '/img/')
   }
 
   function traverse(succ) {
@@ -44,7 +71,7 @@ layout: default
     if (sib && sib.classList.contains('painting')) {
       // Exchange
       el.classList.remove('selected')
-      sib.classList.add('selected')
+      selectPainting(sib)
     }
   }
 
@@ -64,6 +91,7 @@ layout: default
 
   .zoom main {
     margin: 0;
+    background: #1a1a1a;
   }
 
   #gallery {
@@ -107,10 +135,6 @@ layout: default
     margin: auto;
   }
 
-  .zoom .painting img {
-
-  }
-
   .painting:hover {
     outline: 3px solid #fafafa;
   }
@@ -147,14 +171,12 @@ layout: default
   }
 </style>
 
-
-
 <div id="gallery">
   <div id="left" onclick="left()"><span>&lt;</span></div>
 
   {% for painting in site.data.paintings %}
-  <div class="painting" onclick="toggleZoom(this)">
-    <img src="/img/{{ painting.img }}">
+  <div class="painting">
+    <img src="/previews/{{ painting.img }}">
   </div>
   {% endfor %}
 
