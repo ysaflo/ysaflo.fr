@@ -50,3 +50,7 @@ a:hover {
   text-decoration: none;
   border-bottom: 3px solid #fafafa;
 }
+
+a.active {
+  border-bottom: 3px solid #fafafa;
+}

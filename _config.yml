@@ -1,0 +1,13 @@
+# Files in the _paintings folder will create web pages, just like _posts by
+# default
+collections:
+  paintings:
+    output: true
+
+# Paintings have a default layout of "painting"
+defaults:
+  - scope:
+      path: ""
+      type: "paintings"
+    values:
+      layout: painting
