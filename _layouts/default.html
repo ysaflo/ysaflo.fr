@@ -13,17 +13,16 @@
     <link rel="stylesheet" href="/screen.css" media="screen">
   </head>
   <body>
-
     <header>
       <h1><a href="/">Ysaflo</a></h1>
       <nav id="menu">
-        {% for link in site.data.navigation %}
-          {% assign active = nil %}
-          {% if page.url == link.url %}
-            {% assign active = "active" %}
-          {% endif %}
+        {% for link in site.data.navigation -%}
+          {%- assign active = nil -%}
+          {%- if page.url == link.url -%}
+            {%- assign active = "active" -%}
+          {%- endif -%}
         <a class="{{ active }}" href="{{ link.url }}">{{ link.text }}</a>
-        {% endfor %}
+        {% endfor -%}
       </nav>
     </header>
 

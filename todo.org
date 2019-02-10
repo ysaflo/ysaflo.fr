@@ -1,0 +1,11 @@
+- [ ] Push to github private repo
+- [ ] Buy domain name
+
+* Web
+- [ ] Design page
+- [ ] News page
+
+* App
+- use electron for compatibility.  Can I use it with Rust?
+- output debugging log of user actions/errors for easy troubleshooting
+  - gzip the logs to save space
