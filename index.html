@@ -2,56 +2,40 @@
 layout: default
 ---
 
-<script>
-  function left() {
-    traverse(function(el) { return el.previousSibling })
-  }
-
-  function right() {
-    traverse(function(el) { return el.nextSibling })
-  }
-</script>
-
 <style>
   #gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 
   .painting {
-    display: inline-block;
     height: 200px;
-
+    width: 200px;
     margin: 5px;
+    box-sizing: border-box;
+    border: 5px solid #333;
+    transition: all 100ms;
   }
-
-  .painting.selected {
-    height: 95vh;
-    width: 80vw;
-  }
-
 
   .painting img {
     display: block;
     height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    margin: auto;
+    width: 100%;
+    object-fit: cover;
   }
 
   .painting:hover {
-    outline: 3px solid #fafafa;
+    outline: 5px solid #fafafa;
+    border: 0;
   }
 
 </style>
 
 <div id="gallery">
   {% for painting in site.paintings %}
-  <div class="painting">
-    <a href="{{ painting.url }}">
-      <img src="/previews/{{ painting.img }}">
-    </a>
-  </div>
+  <a class="painting" href="{{ painting.url }}">
+    <img src="/previews/{{ painting.img }}">
+  </a>
   {% endfor %}
 </div>
