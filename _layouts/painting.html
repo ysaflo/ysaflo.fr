@@ -3,10 +3,17 @@ layout: default
 ---
 
 <style>
-  img { width: 50%; height: 50%; }
+  main { display: flex; flex-direction: column; align-items: center; }
+  img { max-height: 500px; margin-bottom: 50px; }
 </style>
 
 <img src="/pics/{{ page.img }}">
-Dimensions: {{ page.width }}cm × {{ page.height }}cm
 
-<a href="mailto:commande@ysaflo.fr">Contacter l'artiste</a>
+<section>
+  <p>{{ page.description }}</p>
+  <p>Dimensions: {{ page.width }}cm × {{ page.height }}cm</p>
+
+  <div class="action">
+    <a href="mailto:commande@ysaflo.fr" class="btn">Commander ce tableau</a>
+  </div>
+</section>

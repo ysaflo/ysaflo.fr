@@ -18,26 +18,31 @@ main {
 
 header {
   background: #111;
-  text-shadow: 0 0 4px #666;
-  padding: 1rem 1rem;
+  text-shadow: 0 0 .15em #999;
+  padding: 15px;
+  margin-bottom: 30px;
   border-bottom: 3px solid #000;
-
-  display: flex;
-  flex-direction: column;
 }
 
 h1 {
   font-size: 40px;
+  margin: 10px 0;
+  text-align: center;
 }
 
 nav {
-  font-size: 20px;
+  font-size: 22px;
 
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 
   a {
-    display: inline-block;
+    display: block;
+    margin: 0 30px;
+
+    &:hover {
+      color: #111;
+    }
   }
 }
 
@@ -45,16 +50,35 @@ header a {
   text-decoration: none;
 }
 
-// a {
-//   color: #fafafa;
-//   text-decoration: underline #999;
+a {
+  color: #fafafa;
+  text-decoration: none;
+  padding: .2em .3em;
 
-//   &:hover {
-//     text-decoration: none;
-//     border-bottom: 3px solid #fafafa;
-//   }
+  &:hover {
+    color: #333;
+    background: #eee;
+    border-radius: 6px;
+  }
+}
 
-//   &.active {
-//     border-bottom: 3px solid #fafafa;
-//   }
-// }
+.btn {
+  display: inline-block;
+  font-size: 20px;
+  padding: .5em 1em;
+  background: #555;
+  border: 1px solid #666;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px #222;
+
+  &:hover {
+    border-color: #fff;
+    box-shadow: 4px 4px 2px #222;
+  }
+}
+
+.action {
+  display: flex;
+  margin: 3rem 0;
+  justify-content: space-evenly;
+}
