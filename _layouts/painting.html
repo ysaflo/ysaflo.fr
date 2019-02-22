@@ -10,10 +10,14 @@ layout: default
 <img src="/pics/{{ page.img }}">
 
 <section>
-  <p>{{ page.description }}</p>
-  <p>Dimensions: {{ page.width }}cm × {{ page.height }}cm</p>
+  <p>{{ page.desc }}</p>
+  <p>Dimensions (H×L): {{ page.height }}cm × {{ page.width }}cm</p>
 
   <div class="action">
-    <a href="mailto:commande@ysaflo.fr" class="btn">Commander ce tableau</a>
+    {% if page.available -%}
+      <a href="mailto:contact@ysaflo.fr" class="btn">Interessé par ce tableau ?<br>Contacter l'artiste</a>
+    {% else -%}
+      <span class="btn disabled">Ce tableau n'est plus disponible</span>
+    {% endif -%}
   </div>
 </section>

@@ -70,10 +70,20 @@ a {
   border: 1px solid #666;
   border-radius: 6px;
   box-shadow: 2px 2px 2px #222;
+  text-align: center;
 
   &:hover {
     border-color: #fff;
     box-shadow: 4px 4px 2px #222;
+  }
+
+  &.disabled {
+    background: transparent;
+    box-shadow: unset;
+
+    &:hover {
+      border-color: #666;
+    }
   }
 }
 
