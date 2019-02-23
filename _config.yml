@@ -5,6 +5,8 @@ permalink: pretty
 collections:
   paintings:
     output: true
+  news:
+    output: false
 
 # Paintings have a default layout of "painting"
 defaults:

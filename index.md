@@ -4,6 +4,7 @@ layout: default
 
 <style>
   main { max-width: 600px; margin: auto; }
+  section { margin: 30px 0; }
 </style>
 
 Les peintures exposées sur ce site sont l'œuvre d'Isabelle de Kerchove de
@@ -23,3 +24,9 @@ représenter son imaginaire à travers ces toiles.
   <a href="/gallery/" class="btn">Visiter la gallerie</a>
   <a href="mailto:contact@ysaflo.fr" class="btn">Contacter l'artiste</a>
 </div>
+
+## Actualités
+
+{% for news in site.news -%}
+  <section>{{ news.text | markdownify }}</section>
+{% endfor -%}
