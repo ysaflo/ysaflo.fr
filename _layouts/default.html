@@ -2,12 +2,9 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <meta name="author" content="Isabelle Riquier de Kerchove">
+    <meta name="author" content="Isabelle de Kerchove de Denterghem">
 
     <title>Ysaflo</title>
-
-    <link rel="apple-touch-icon" href="/favicon.png">
-    <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/screen.css" media="screen">
@@ -21,7 +18,7 @@
           {%- if page.url == link.url -%}
             {%- assign active = "active" -%}
           {%- endif -%}
-        <a class="{{ active }}" href="{{ link.url }}">{{ link.text }}</a>
+        <a class="{{ active }}" href="{{ link.url }}">{{ link.text | smartify }}</a>
         {% endfor -%}
       </nav>
     </header>
