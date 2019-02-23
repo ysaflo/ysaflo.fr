@@ -4,20 +4,57 @@ layout: default
 
 <style>
   main { display: flex; flex-direction: column; align-items: center; }
-  img { max-height: 500px; margin-bottom: 50px; max-width: 98%; }
+  img { max-height: 500px; margin-bottom: 20px; max-width: 98%; }
+  section { max-width: 600px; margin: auto; }
+  .action { margin-top: 10px; }
+  #links { margin: 0; }
+  #links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 30px 30px 30px;
+    height: 15px;
+    width: 30px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
 </style>
+
+{%- for painting in site.paintings -%}
+  {%- if page == painting -%}
+      {%- unless forloop.first -%}
+        {%- assign prev = last -%}
+      {% endunless %}
+      {%- unless forloop.last -%}
+        {%- assign next = site.paintings[forloop.index] -%}
+      {% endunless %}
+  {%- endif -%}
+  {%- assign last = painting -%}
+{% endfor -%}
+
+<div class="action" id="links">
+{% if prev %}<a href="{{ prev.url }}" class="btn">&lt;</a>{% endif %}
+{% if next %}<a href="{{ next.url }}" class="btn">&gt;</a>{% endif %}
+</div>
 
 <img src="/pics/{{ page.img }}">
 
 <section>
-  <p>{{ page.desc }}</p>
-  <p>Dimensions (H×L): {{ page.height }}cm × {{ page.width }}cm</p>
-
-  <div class="action">
-    {% if page.available -%}
-      <a href="mailto:contact@ysaflo.fr" class="btn">Interessé par ce tableau ?<br>Contacter l'artiste</a>
-    {% else -%}
-      <span class="btn disabled">Ce tableau n'est plus disponible</span>
-    {% endif -%}
-  </div>
+  {% if page.desc != "" -%}
+    <p>{{ page.desc }}</p>
+  {% endif -%}
+  {% if page.height != "" and page.width != "" -%}
+    <p>Dimensions (H×L): {{ page.height }}cm × {{ page.width }}cm</p>
+  {% endif -%}
 </section>
+
+<div class="action">
+  {% if page.available -%}
+  <a href="mailto:contact@ysaflo.fr" class="btn">Interessé par ce tableau ?<br>Contacter l'artiste</a>
+  {% else -%}
+  <span class="btn disabled">Ce tableau n'est plus disponible</span>
+  {% endif -%}
+</div>
