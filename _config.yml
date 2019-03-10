@@ -6,7 +6,7 @@ collections:
   paintings:
     output: true
   news:
-    output: false
+    output: true
 
 # Paintings have a default layout of "painting"
 defaults:
@@ -15,3 +15,8 @@ defaults:
       type: "paintings"
     values:
       layout: painting
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: news

@@ -25,8 +25,11 @@ représenter son imaginaire à travers ces toiles.
   <a href="mailto:contact@ysaflo.fr" class="btn">Contacter l'artiste</a>
 </div>
 
-## Actualités
+<section id="news">
+<h2>Actualités</h2>
 
 {% for news in site.news -%}
-  <section>{{ news.text | markdownify }}</section>
+  <a href="{{ news.url }}">{{ news.title | smartify }}</a>
 {% endfor -%}
+
+</section>
