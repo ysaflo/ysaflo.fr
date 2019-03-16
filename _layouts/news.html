@@ -4,8 +4,16 @@ layout: default
 
 <style>
   main { max-width: 800px; margin: auto; }
+  img { min-width: 0; height: 100%; margin: 0 10px; object-fit: contain; }
+  .img-row { display: flex; height: 300px; }
 </style>
 
 <h2>{{ page.title }}</h2>
+
+<div class="img-row">
+{%- for im in page.images -%}
+  <img src="/news_pics/{{ im }}">
+{%- endfor -%}
+</div>
 
 {{ page.desc | markdownify }}
