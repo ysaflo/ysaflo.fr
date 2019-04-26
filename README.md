@@ -1,1 +1,1 @@
-[Gallerie d'Ysaflo](https://www.ysaflo.fr/)
+[Galerie d'Ysaflo](https://www.ysaflo.fr/)

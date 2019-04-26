@@ -21,7 +21,7 @@ Prenez plaisir à voyager dans son univers hétéroclite, autant qu'elle en pren
 représenter son imaginaire à travers ces toiles.
 
 <div class="action">
-  <a href="/gallery/" class="btn">Visiter la gallerie</a>
+  <a href="/gallery/" class="btn">Visiter la galerie</a>
   <a href="mailto:contact@ysaflo.fr" class="btn">Contacter l'artiste</a>
 </div>
 
