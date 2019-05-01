@@ -34,7 +34,7 @@ layout: default
 </style>
 
 <div id="gallery">
-  {% for painting in site.paintings -%}
+  {% for painting in site.paintings reversed -%}
   <a class="painting" href="{{ painting.url }}">
     <img src="/previews/{{ painting.img }}">
   </a>
