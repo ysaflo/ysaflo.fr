@@ -17,6 +17,7 @@ layout: default
     box-sizing: border-box;
     border: 5px solid transparent;
     transition: all 100ms;
+    position: relative;
   }
 
   .painting img {
@@ -31,11 +32,43 @@ layout: default
     border: 0;
   }
 
+  .available-corner {
+    position: absolute;
+    top: 0; left: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-left: 20px solid #eee;
+    border-top: 20px solid #eee;
+  }
+
+  .available {
+    position: absolute;
+    top: 0; left: 0;
+    height: 40px; width: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #eee;
+    color: #111;
+    transition: width 100ms;
+    box-sizing: border-box;
+  }
+
+  .painting:hover .available, .painting:focus .available {
+    overflow: visible;
+    width: 100%;
+    padding-left: 10px;
+  }
+
 </style>
 
 <div id="gallery">
   {% for painting in site.paintings reversed -%}
   <a class="painting" href="{{ painting.url }}">
+    {%- if painting.available -%}
+      <span class="available-corner"></span>
+      <span class="available">Disponible</span>
+    {%- endif -%}
     <img src="/previews/{{ painting.img }}">
   </a>
   {% endfor -%}
