@@ -43,7 +43,7 @@ nav {
     margin: 5px 30px;
     white-space: nowrap;
 
-    &:hover {
+    &:hover, &:focus {
       color: #111;
     }
   }
@@ -52,7 +52,7 @@ nav {
 a {
   color: #fafafa;
 
-  &:hover {
+  &:hover, &:focus {
     color: #333;
     background: #eee;
     text-decoration: none;
@@ -79,7 +79,7 @@ header a {
   white-space: nowrap;
   text-decoration: none;
 
-  &:hover {
+  &:hover, &:focus {
     border-color: #fff;
     box-shadow: 4px 4px 2px #222;
   }
