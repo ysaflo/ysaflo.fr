@@ -8,6 +8,7 @@ layout: default
   section { max-width: 600px; margin: auto; }
   .action { margin-top: 10px; }
   #links { margin: 0; }
+  #links .hidden { visibility: hidden; }
   #links a {
     display: flex;
     align-items: center;
@@ -36,8 +37,8 @@ layout: default
 {% endfor -%}
 
 <div class="action" id="links">
-{% if prev %}<a href="{{ prev.url }}" class="btn">&lt;</a>{% endif %}
-{% if next %}<a href="{{ next.url }}" class="btn">&gt;</a>{% endif %}
+<a href="{{ next.url }}" class="btn {% unless next %} hidden {% endunless %}">&lt;</a>
+<a href="{{ prev.url }}" class="btn {% unless prev %} hidden {% endunless %}">&gt;</a>
 </div>
 
 <img src="/pics/{{ page.img }}">
